@@ -120,7 +120,9 @@ const CreateNew = props => {
 const Anecdote = ({ anecdote }) => {
   return (
     <div>
-      <h2>{anecdote.content}</h2>
+      <h2>
+        {anecdote.content} by {anecdote.author}
+      </h2>
       <p>has {anecdote.votes} votes</p>
       <p>
         for more info see <a href={anecdote.info}>{anecdote.info}</a>
@@ -160,19 +162,6 @@ const App = () => {
     setTimeout(() => {
       setNotification("");
     }, 5000);
-  };
-
-  const anecdoteById = id => anecdotes.find(a => a.id === id);
-
-  const vote = id => {
-    const anecdote = anecdoteById(id);
-
-    const voted = {
-      ...anecdote,
-      votes: anecdote.votes + 1,
-    };
-
-    setAnecdotes(anecdotes.map(a => (a.id === id ? voted : a)));
   };
 
   const match = useMatch("/anecdotes/:id");
